@@ -21,31 +21,40 @@ const utente2 = new User("Pippo", "Pasticcio", 28, "Roma");
 console.log(utente1.confronto(utente2));
 
 class Pets {
-  constructor(petName, ounerName, specials, bread) {
+  constructor(petName, ounerName, specials, breed) {
     this.petName = petName;
     this.ounerName = ounerName;
     this.specials = specials;
-    this.bread = bread;
+    this.breed = breed;
   }
 
-  static sameOuner(pets1, pets2) {
-    return pets1.ounerName === pets2.ounerName;
+  static sameOuner(a, b) {
+    if (a.ounerName === b.ounerName) {
+      return a.petName + " ha lo stesso proprietario di " + b.petName + " che si chiama " + a.ounerName;
+    }
   }
 }
+
+let pets = [];
 
 const formPets = document.getElementById("petForm");
 
 formPets.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const formData = new FormData(formPets);
+  const petName = document.getElementById("petName").value;
+  const specials = document.getElementById("specials").value;
+  const breed = document.getElementById("breed").value;
+  const ounerName = document.getElementById("ounerName").value;
 
-  const pets1 = new Pets(
-    formPets.get("petName"),
-    formPets.get("ounerName"),
-    formPets.get("specials"),
-    formPets.get("bread")
-  );
+  const pet1 = new Pets(petName, ounerName, specials, breed);
 
-  console.log(pets1);
+  console.log(pet1);
+  console.dir(petName);
+
+  pets.forEach((altropet) => {
+    console.log(Pets.sameOuner(pet1, altropet));
+  });
+  pets.push(pet1);
+  this.appendChild;
 });
