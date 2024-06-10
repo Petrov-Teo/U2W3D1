@@ -21,19 +21,31 @@ const utente2 = new User("Pippo", "Pasticcio", 28, "Roma");
 console.log(utente1.confronto(utente2));
 
 class Pets {
-  construction(petName, ounerName, specials, bread) {
+  constructor(petName, ounerName, specials, bread) {
     this.petName = petName;
     this.ounerName = ounerName;
     this.specials = specials;
     this.bread = bread;
   }
+
   static sameOuner(pets1, pets2) {
     return pets1.ounerName === pets2.ounerName;
   }
 }
 
-const btnSubmit = document.querySelector("form");
+const formPets = document.getElementById("petForm");
 
-console.log(btnSubmit)
+formPets.addEventListener("submit", function (event) {
+  event.preventDefault();
 
-btnSubmit.onsamit = function(event)
+  const formData = new FormData(formPets);
+
+  const pets1 = new Pets(
+    formPets.get("petName"),
+    formPets.get("ounerName"),
+    formPets.get("specials"),
+    formPets.get("bread")
+  );
+
+  console.log(pets1);
+});
